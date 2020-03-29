@@ -4,26 +4,6 @@ const database = require('../config/database');
 module.exports = {
 
     async insert(req, res){
-        //protege todo codigo
-        try{
-            //desestrutura os campos que estão vindo do body
-        const { usario, email, senha } = req.body;
-            let datas = {
-                usario: usario,
-                email: email,
-                senha: senha,
-        }
-        let response = await database.query(`INSERT INTO usuario SET ?`, [datas]);
-            res.json(response);
-        }catch (error) {
-            // trata o error de forma mais sugestiva
-            console.log(`O error gerado é: ${error}`);
-        }
-    },
-
-
-        /*
-    async insert(req, res){
         let datas = {
             "usario": req.body.usario,
             "email": req.body.email,
@@ -36,8 +16,6 @@ module.exports = {
             console.log(error);
         }
     },
-        */
-
 
     async update(req, res){
         let id = req.params.id;
