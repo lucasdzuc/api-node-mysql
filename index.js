@@ -5,19 +5,19 @@ const app = express();
 app.use(express.json());
 
 
-const ControllerUsuario = require('./controllers/ControllerUsuario');
-const ControllerFornecedor = require('./controllers/ControllerFornecedor');
-const ControllerFuncionario = require('./controllers/ControllerFuncionario');
-const ControllerEstoque = require('./controllers/ControllerEstoque');
-const ControllerEmpresa = require('./controllers/ControllerEmpresa');
-const ControllerSecao = require('./controllers/ControllerSecao');
-const ControllerCategoria = require('./controllers/ControllerCategoria');
-const ControllerMarca = require('./controllers/ControllerMarca');
-const ControllerEndereco = require('./controllers/ControllerEndereco');
-const ControllerProdutos = require('./controllers/ControllerProdutos');
+const ControllerUsuario = require('./src/controllers/ControllerUsuario');
+const ControllerFornecedor = require('./src/controllers/ControllerFornecedor');
+const ControllerFuncionario = require('./src/controllers/ControllerFuncionario');
+const ControllerEstoque = require('./src/controllers/ControllerEstoque');
+const ControllerEmpresa = require('./src/controllers/ControllerEmpresa');
+const ControllerSecao = require('./src/controllers/ControllerSecao');
+const ControllerCategoria = require('./src/controllers/ControllerCategoria');
+const ControllerMarca = require('./src/controllers/ControllerMarca');
+const ControllerEndereco = require('./src/controllers/ControllerEndereco');
+const ControllerProdutos = require('./src/controllers/ControllerProdutos');
 
 
-//USUARIO
+// USUARIO
 app.post('/usuario/insert', ControllerUsuario.insert);
 app.put('/usuario/update/:id', ControllerUsuario.update);
 app.get('/usuario', ControllerUsuario.findAll);
@@ -86,14 +86,14 @@ app.get('/endereco/:id', ControllerEndereco.delete);
 
 
 //PRODUTO
-app.post('/produto/insert', ControllerProdutos);
+app.post('/produto/insert', ControllerProdutos.insert);
 app.put('/produto/update/:id', ControllerProdutos.update);
 app.get('/produto', ControllerProdutos.findAll);
 app.get('/produto/:id', ControllerProdutos.findById);
 app.delete('/produto/:id', ControllerProdutos.delete);
 
 
-const PORT = process.env.PORT || 2000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log('API RUN');
 })
