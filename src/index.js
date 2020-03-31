@@ -5,16 +5,16 @@ const app = express();
 app.use(express.json());
 
 
-const ControllerUsuario = require('./src/controllers/ControllerUsuario');
-const ControllerFornecedor = require('./src/controllers/ControllerFornecedor');
-const ControllerFuncionario = require('./src/controllers/ControllerFuncionario');
-const ControllerEstoque = require('./src/controllers/ControllerEstoque');
-const ControllerEmpresa = require('./src/controllers/ControllerEmpresa');
-const ControllerSecao = require('./src/controllers/ControllerSecao');
-const ControllerCategoria = require('./src/controllers/ControllerCategoria');
-const ControllerMarca = require('./src/controllers/ControllerMarca');
-const ControllerEndereco = require('./src/controllers/ControllerEndereco');
-const ControllerProdutos = require('./src/controllers/ControllerProdutos');
+const ControllerUsuario = require('./controllers/ControllerUsuario');
+const ControllerFornecedor = require('./controllers/ControllerFornecedor');
+const ControllerFuncionario = require('./controllers/ControllerFuncionario');
+const ControllerEstoque = require('./controllers/ControllerEstoque');
+const ControllerEmpresa = require('./controllers/ControllerEmpresa');
+const ControllerSecao = require('./controllers/ControllerSecao');
+const ControllerCategoria = require('./controllers/ControllerCategoria');
+const ControllerMarca = require('./controllers/ControllerMarca');
+const ControllerEndereco = require('./controllers/ControllerEndereco');
+const ControllerProdutos = require('./controllers/ControllerProdutos');
 
 
 // USUARIO

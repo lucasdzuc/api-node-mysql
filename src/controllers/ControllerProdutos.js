@@ -6,7 +6,7 @@ module.exports = {
         let datas = {
             "codigo": req.body.codigo,
             "data_validade": req.body.data_validade,
-            "nome": req.body.nome,
+            "nome_produto": req.body.nome_produto,
             "valor": req.body.valor,
             "lucro": req.body.lucro,
             "valor_venda": req.body.valor_venda,
