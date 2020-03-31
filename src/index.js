@@ -14,7 +14,7 @@ const ControllerSecao = require('./controllers/ControllerSecao');
 const ControllerCategoria = require('./controllers/ControllerCategoria');
 const ControllerMarca = require('./controllers/ControllerMarca');
 const ControllerEndereco = require('./controllers/ControllerEndereco');
-const ControllerProdutos = require('./controllers/ControllerProdutos');
+const ControllerProdutos = require('./controllers/ControllerProduto');
 
 
 // USUARIO
@@ -62,6 +62,7 @@ app.post('/secao/insert', ControllerSecao.insert);
 app.put('/secao/update/:id', ControllerSecao.update);
 app.get('/secao', ControllerSecao.findAll);
 app.get('/secao/:id', ControllerSecao.delete);
+app.delete('/secao/:id', ControllerSecao.delete);
 
 
 //CATEGORIAS
@@ -69,6 +70,7 @@ app.post('/categoria/insert', ControllerCategoria.insert);
 app.put('/categoria/update/:id', ControllerCategoria.update);
 app.get('/categoria', ControllerCategoria.findAll);
 app.get('/categoria/:id', ControllerCategoria.delete);
+app.delete('/categoria/:id', ControllerCategoria.delete);
 
 
 //MARCA
@@ -76,6 +78,7 @@ app.post('/marca/insert', ControllerMarca.insert);
 app.put('/marca/update/:id', ControllerMarca.update);
 app.get('/marca', ControllerMarca.findAll);
 app.get('/marca/:id', ControllerMarca.delete);
+app.delete('/categoria/:id', ControllerMarca.delete);
 
 
 //ENDEREÇO
@@ -83,6 +86,7 @@ app.post('/endereco/insert', ControllerEndereco.insert);
 app.put('/endereco/update/:id', ControllerEndereco.update);
 app.get('/endereco', ControllerEndereco.findAll);
 app.get('/endereco/:id', ControllerEndereco.delete);
+app.delete('/endereco/:id', ControllerEndereco.delete);
 
 
 //PRODUTO
@@ -96,4 +100,4 @@ app.delete('/produto/:id', ControllerProdutos.delete);
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log('API RUN');
-})
+});

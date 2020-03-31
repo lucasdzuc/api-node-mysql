@@ -2,63 +2,79 @@ const database = require('../config/database');
 
 
 module.exports = {
+
+    // INSERIR SEÇÃO
     async insert(req, res){
-        let datas = {
-            "nome_secao": req.body.nome_secao,
-            "id_local_estoque_secao_fk": req.body.id_local_estoque_secao_fk
-        }
+         //protege todo codigo
+        try {
+            //desestrutura os campos que estão vindo do body
+            const { nome_secao, id_local_estoque_secao_fk } = req.body;
 
-        try{
+            let datas = {
+                nome_secao: nome_secao,
+                id_local_estoque_secao_fk: id_local_estoque_secao_fk
+            }
+
             let response = await database.query(`INSERT INTO secao SET ?`, [datas]);
-            res.json(response);
-        }catch (error) {
-            console.log(error);
+                res.json(response);
+
+        } catch (error) {
+            // trata o error de forma mais sugestiva
+            console.log(`O error gerado é: ${error}`);
         }
+
     },
 
+    // ATUALIZAR SEÇÃO
     async update(req, res){
-        let id = req.params.id;
-
-        let datas = {
-            "nome_secao": req.body.nome_secao,
-            "id_local_estoque_secao_fk": req.body.id_local_estoque_secao_fk
-        }
-
-        try{
-            let response = await database.query(`UPDATE secao SET ? WHERE id = ?`, [datas, id]);
+        try {
+            //desestrutura os campos que estão vindo do body
+            const { nome_secao, id_local_estoque_secao_fk } = req.body;
+            let id = req.params.id;
+            let datas = {
+                nome_secao: nome_secao,
+                id_local_estoque_secao_fk: id_local_estoque_secao_fk
+            }
+            let response = await database.query(`UPDATE secao SET ? WHERE id_secao = ?`, [datas, id]);
             res.json(response);
-        }catch (error) {
-            console.log(error);
+            
+        } catch (error) {
+            // trata o error de forma mais sugestiva
+            console.log(`O error gerado é: ${error}`);
         }
 
     },
+
+    // LISTAR TODAS AS SEÇÕES
     async findAll(req, res){
         try {
             let response = await database.query('SELECT * FROM secao');
             res.json(response[0]);
         } catch (error) {
-            console.log(erro);
+            console.log(`O error gerado é: ${error}`);
         }
     },
-    async findById(req, res){
-        let id = req.params.id;
 
+    // LISTAR A SEÇÃO PELO ID
+    async findById(req, res){
         try {
-            let response = await database.query(`SELECT * FROM secao WHERE id = ${id}`);
+            let id = req.params.id;
+            let response = await database.query(`SELECT * FROM secao WHERE id_secao = ${id}`);
             res.json(response[0]);
         } catch (error) {
-            
+            console.log(`O error gerado é: ${error}`);
         }
 
     },
-    async delete(req, res){
-        let id = req.params.id;
 
+    // DELETAR UMA SEÇÃO PELO ID
+    async delete(req, res){
         try {
-            let response = await database.query(`DELETE FROM secao WHERE id = ${id}`);
+            let id = req.params.id;
+            let response = await database.query(`DELETE FROM secao WHERE id_secao = ${id}`);
             res.json(response);
         } catch (error) {
-            console.log(error)
+            console.log(`O error gerado é: ${error}`);
         }
     }
 }

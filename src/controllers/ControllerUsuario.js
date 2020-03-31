@@ -3,16 +3,17 @@ const database = require('../config/database');
 
 module.exports = {
 
+    //INSERIR USUARIO
     async insert(req, res){
         //protege todo codigo
         try{
-            //desestrutura os campos que estão vindo do body
-        const { usario, email, senha, nivel } = req.body;
+        //desestrutura os campos que estão vindo do body
+        const { usuario, email, senha, nivel } = req.body;
             let datas = {
-                "usario": usario,
-                "email": email,
-                "senha": senha,
-                "nivel": nivel
+                usuario: usuario,
+                email: email,
+                senha: senha,
+                nivel: nivel
         }
         let response = await database.query(`INSERT INTO usuario SET ?`, [datas]);
             res.json(response);
@@ -21,69 +22,57 @@ module.exports = {
             console.log(`O error gerado é: ${error}`);
         }
     },
-
-    /*
-    async insert(req, res){
-        let datas = {
-            "usario": req.body.usario,
-            "email": req.body.email,
-            "senha": req.body.senha,
-            "nivel": req.body.nivel
-        }
-        try{
-            let response = await database.query(`INSERT INTO usuario SET ?`, [datas]);
-            res.json(response);
-        }catch (error) {
-            console.log(error);
-        }
-    },
-    */
-
+    
+    // ATUALIZAR USUARIO
     async update(req, res){
-        let id = req.params.id;
-
-        let datas = {
-            "usario": req.body.usario,
-            "email": req.body.email,
-            "senha": req.body.senha,
-            "nivel": req.body.nivel
-        }
-
-        try{
-            let response = await database.query(`UPDATE usuario SET ? WHERE id = ?`, [datas, id]);
+        //protege todo codigo
+        try {
+            //desestrutura os campos que estão vindo do body
+            const { usuario, email, senha } = req.body;
+            let id = req.params.id;
+            let datas = {
+                usuario: usuario,
+                email: email,
+                senha: senha
+            }
+            
+            let response = await database.query(`UPDATE usuario SET ? WHERE id_usuario = ?`, [datas, id]);
             res.json(response);
-        }catch (error) {
-            console.log(error);
+
+        } catch (error) {
+            console.log(`O error gerado é: ${error}`);
         }
 
     },
+
     async findAll(req, res){
         try {
             let response = await database.query('SELECT * FROM usuario');
             res.json(response[0]);
         } catch (error) {
-            console.log(erro);
+            console.log(`O error gerado é: ${error}`);
         }
     },
-    async findById(req, res){
-        let id = req.params.id;
 
+    async findById(req, res){
         try {
-            let response = await database.query(`SELECT * FROM usuario WHERE id = ${id}`);
+            let id = req.params.id;
+            let response = await database.query(`SELECT * FROM usuario WHERE id_usuario = ${id}`);
             res.json(response[0]);
         } catch (error) {
-            
+            console.log(`O error gerado é: ${error}`);
         }
 
     },
-    async delete(req, res){
-        let id = req.params.id;
 
+    // DELETA UM USUÁRIO PELO ID
+    async delete(req, res){
         try {
-            let response = await database.query(`DELETE FROM usuario WHERE id = ${id}`);
+            let id = req.params.id;
+            let response = await database.query(`DELETE FROM usuario WHERE id_usuario = ${id}`);
             res.json(response);
         } catch (error) {
-            console.log(error)
+            console.log(`O error gerado é: ${error}`);
         }
     }
 }
